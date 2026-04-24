@@ -35,9 +35,19 @@ Copy .env.example to .env and set your DATABASE_URL.
 The API will be available at http://localhost:3000/track
 
 ### 🐳 Docker (self‑hosted full stack)
-```docker compose up -d```
-
+```
+git clone https://github.com/aitraffictracker/aitraffic-backend.git
+cd aitraffic-backend
+docker compose up -d
+```
 This starts both the API and a PostgreSQL instance. The API will be reachable on port 3000.
+
+The API will be available at http://localhost:3000/track.
+
+Use ```docker compose logs``` to see output.
+
+To stop: ```docker compose down```
+To stop and remove all data (fresh start): ```docker compose down -v```
 
 ### 🔌 API Endpoints
 ### POST /track
