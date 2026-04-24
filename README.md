@@ -56,7 +56,7 @@ Accepts JSON:
 Returns 202 on success. Source names are normalised (e.g. chatgpt.com → ChatGPT).
 
 ### GET /health
-Returns 200 OK.
+Returns 200 OK
 
 ### 🛡️ Privacy
 No IP addresses, no cookies, no personal data stored. See the main tracker for details.
