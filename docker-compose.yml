@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   postgres:
     image: postgres:16-alpine
@@ -6,10 +5,24 @@ services:
       POSTGRES_USER: aitraffic
       POSTGRES_PASSWORD: aitraffic
       POSTGRES_DB: aitraffic
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aitraffic"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://aitraffic:aitraffic@postgres:5432/aitraffic
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   pgdata:
