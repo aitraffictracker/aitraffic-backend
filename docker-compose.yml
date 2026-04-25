@@ -20,6 +20,8 @@ services:
       - "3000:3000"
     environment:
       DATABASE_URL: postgresql://aitraffic:aitraffic@postgres:5432/aitraffic
+      REQUIRE_SITE_REGISTRATION: "false" # accept any site-id, if you are self-hosting, no need to change this
+      ENFORCE_ORIGIN: "false" # origin is not enforced, if you are self-hosting, no need to change this
     depends_on:
       postgres:
         condition: service_healthy
